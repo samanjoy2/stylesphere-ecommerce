@@ -16,5 +16,9 @@ COPY . .
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
-# Run run.py when the container launches
-CMD ["python", "run.py"] 
+# Define environment variable
+ENV FLASK_APP run.py
+ENV FLASK_RUN_HOST 0.0.0.0
+
+# Run the command to start the Flask application
+CMD ["flask", "run"] 
