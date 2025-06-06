@@ -30,7 +30,7 @@ export default function RootLayout({
               color: '#fff',
             },
           }} />
-          {children}
+        {children}
           <Footer />
         </CartProvider>
       </body>
