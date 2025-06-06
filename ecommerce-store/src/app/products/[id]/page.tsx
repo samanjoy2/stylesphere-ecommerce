@@ -15,8 +15,10 @@ interface Product {
   image: string;
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 async function getProduct(id: string): Promise<Product> {
-  const res = await fetch(`http://127.0.0.1:5000/api/products/${id}`);
+  const res = await fetch(`${API_URL}/api/products/${id}`);
   if (!res.ok) {
     throw new Error('Failed to fetch product');
   }

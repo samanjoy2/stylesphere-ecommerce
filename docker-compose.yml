@@ -4,17 +4,21 @@ services:
   backend:
     build: ./backend
     ports:
-      - "5000:5000"
+      - "${BACKEND_HOST_PORT:-5000}:5000"
     volumes:
       - ./backend:/app
     environment:
       - FLASK_ENV=development
+      - FLASK_RUN_PORT=5000
 
   frontend:
     build:
       context: ./ecommerce-store
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "${FRONTEND_HOST_PORT:-3000}:3000"
     depends_on:
-      - backend 
+      - backend
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:5000}
+      - PORT=3000 
