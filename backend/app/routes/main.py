@@ -3,6 +3,10 @@ from app.models.product import products
 
 main_bp = Blueprint('main', __name__)
 
+@main_bp.route('/health')
+def health_check():
+    return jsonify({"status": "healthy", "service": "backend"})
+
 @main_bp.route('/api/products')
 def get_products():
     # In a real app, you'd be serializing SQLAlchemy objects

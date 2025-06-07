@@ -15,7 +15,7 @@ interface Product {
   image: string;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 async function getProduct(id: string): Promise<Product> {
   const res = await fetch(`${API_URL}/api/products/${id}`);
