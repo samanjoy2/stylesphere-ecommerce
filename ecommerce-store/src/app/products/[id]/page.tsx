@@ -25,6 +25,10 @@ async function getProduct(id: string): Promise<Product> {
   return res.json();
 }
 
+const imageLoader = ({ src }: { src: string }) => {
+  return src;
+};
+
 export default function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -72,6 +76,7 @@ export default function ProductPage() {
           <div className="md:w-1/2">
             <div className="relative h-96 w-full">
               <Image
+                loader={imageLoader}
                 src={product.image}
                 alt={product.name}
                 layout="fill"
