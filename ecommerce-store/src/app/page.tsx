@@ -25,6 +25,10 @@ async function getProducts(): Promise<Product[]> {
   return res.json();
 }
 
+const imageLoader = ({ src }: { src: string }) => {
+  return src;
+};
+
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const { addToCart } = useCart();
@@ -69,7 +73,8 @@ export default function Home() {
             >
               <Link href={`/products/${product.id}`} passHref className="flex-grow">
                 <div className="relative h-64 w-full">
-            <Image
+                  <Image
+                    loader={imageLoader}
                     src={product.image}
                     alt={product.name}
                     layout="fill"
@@ -89,7 +94,7 @@ export default function Home() {
                 <button
                   onClick={() => handleAddToCart(product)}
                   className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300"
-          >
+                >
                   Add to Cart
                 </button>
               </div>
