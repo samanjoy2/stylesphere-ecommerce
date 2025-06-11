@@ -7,6 +7,10 @@ import Navbar from '@/components/Navbar';
 import { MinusCircle, PlusCircle, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
+const imageLoader = ({ src }: { src: string }) => {
+  return src;
+};
+
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
 
@@ -35,7 +39,7 @@ export default function CartPage() {
                 <div key={item.id} className="flex items-center justify-between py-4 border-b">
                   <div className="flex items-center gap-4">
                     <div className="relative h-24 w-24 rounded-md overflow-hidden">
-                      <Image src={item.image} alt={item.name} layout="fill" objectFit="cover" />
+                      <Image loader={imageLoader} src={item.image} alt={item.name} layout="fill" objectFit="cover" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold">{item.name}</h3>
